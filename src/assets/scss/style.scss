@@ -9,6 +9,13 @@
 @import "@/assets/scss/sass-utils/_animations.scss";
 @import "@/assets/scss/base/_general.scss";
 
+/* Modals */
+@import "@/assets/scss/components/modals/_main-modal.scss";
+@import "@/assets/scss/components/modals/_code-modal.scss";
+
+/* Inputs */
+@import "@/assets/scss/components/inputs/_squared-input.scss";
+
 /* Logo */
 @import "@/assets/scss/components/logo/_squared-logo.scss";
 

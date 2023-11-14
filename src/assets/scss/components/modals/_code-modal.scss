@@ -1,0 +1,30 @@
+.code-modal__title {
+    color: $darkColor;
+    font-family: $primaryFont;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.code-modal__form-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 45px;
+}
+
+.code-modal__inputs-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.code-modal__buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
