@@ -3,9 +3,9 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <RouterView v-slot="{ Component }" class="router-view">
-    <Transition mode="out-in">
+  <router-view v-slot="{ Component }">
+    <transition>
       <component :is="Component" />
-    </Transition>
-  </RouterView>
+    </transition>
+  </router-view>
 </template>
