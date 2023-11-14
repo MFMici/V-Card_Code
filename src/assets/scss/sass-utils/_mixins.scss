@@ -1,0 +1,49 @@
+// Dimensions
+@mixin container {
+    max-width: $containerWidth;
+    width: 100%;
+    margin: 0px auto;
+    box-sizing: border-box;
+}
+
+// Formatting 
+@mixin unset {
+    all:unset;
+}
+
+/* Media Queries */ 
+@mixin for-phone-only {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  
+  @mixin for-tablet-down {
+    @media only screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+  
+  @mixin for-small-screen-down {
+    @media only screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+  
+  @mixin for-desktop-down {
+    @media only screen and (max-width: 1512px) {
+      @content;
+    }
+  }
+  
+  @mixin for-desktop-up {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+  
+  @mixin for-large-screen-only {
+    @media (min-width: 1512px) {
+      @content;
+    }
+  }
