@@ -1,0 +1,73 @@
+
+.fade-in {
+    animation: fadeIn 1s ease 3s forwards;
+    -webkit-animation: fadeIn 1s ease 3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideAnimationsShape {
+    0% {
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        -o-transform: translateY(0%);
+}
+    100% {
+        transform: translateY(-30%);
+        border-radius: 0px 0px 190px 190px;
+        -webkit-border-radius: 0px 0px 190px 190px;
+        -moz-border-radius: 0px 0px 190px 190px;
+        -ms-border-radius: 0px 0px 190px 190px;
+        -o-border-radius: 0px 0px 190px 190px;
+        -webkit-transform: translateY(-30%);
+        -moz-transform: translateY(-30%);
+        -ms-transform: translateY(-30%);
+        -o-transform: translateY(-30%);
+}
+}
+
+@keyframes slideAnimation {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-60%);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        top: -100px;
+    }
+    100% {
+        top: 0;
+    }
+  }
+  
+  @keyframes slideOut {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -100px;
+    }
+  }
+
+
+  @keyframes main-button__loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

@@ -1,0 +1,19 @@
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global */
+@import "@/assets/scss/sass-utils/_variables.scss";
+@import "@/assets/scss/sass-utils/_mixins.scss";
+@import "@/assets/scss/sass-utils/_animations.scss";
+@import "@/assets/scss/base/_general.scss";
+
+/* Logo */
+@import "@/assets/scss/components/logo/_squared-logo.scss";
+
+/* Buttons */
+@import "@/assets/scss/components/buttons/_main-button.scss";
+
+/* Views */
+@import "@/assets/scss/views/_home.scss";
