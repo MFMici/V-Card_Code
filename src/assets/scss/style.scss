@@ -9,18 +9,27 @@
 @import "@/assets/scss/sass-utils/_animations.scss";
 @import "@/assets/scss/base/_general.scss";
 
+/* Logo */
+@import "@/assets/scss/components/logo/_squared-logo.scss";
+
+/* Icons */
+@import "@/assets/scss/components/icons/_icons.scss";
+
 /* Modals */
 @import "@/assets/scss/components/modals/_main-modal.scss";
 @import "@/assets/scss/components/modals/_code-modal.scss";
 
 /* Inputs */
+@import "@/assets/scss/components/inputs/_basic-input.scss";
 @import "@/assets/scss/components/inputs/_squared-input.scss";
 
-/* Logo */
-@import "@/assets/scss/components/logo/_squared-logo.scss";
+/* Containers */
+@import "@/assets/scss/components/containers/_main-container.scss";
+@import "@/assets/scss/components/containers/_container-directions.scss";
 
 /* Buttons */
 @import "@/assets/scss/components/buttons/_main-button.scss";
 
 /* Views */
 @import "@/assets/scss/views/_home.scss";
+@import "@/assets/scss/views/_register.scss";

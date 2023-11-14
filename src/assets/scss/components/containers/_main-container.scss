@@ -1,0 +1,16 @@
+.main-container__container {
+    background: white;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    @include container;
+}
+
+.main-container__container-inner {
+    height: inherit;
+    position: relative;
+    box-sizing: border-box;
+    padding: 50px 30px;
+    width: 100%;
+}

@@ -68,3 +68,13 @@
   border-color: #fff transparent #fff transparent;
   animation: main-button__loader 1.2s linear infinite;
 }
+
+.main-button--disabled{
+  background-color: gray;
+  cursor: not-allowed;
+
+  &:hover{
+    background-color: gray;
+    cursor: not-allowed;
+  }
+}
