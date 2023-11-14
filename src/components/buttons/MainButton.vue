@@ -1,5 +1,5 @@
 <template>
-    <button v-if="!to" :type="type" :disabled="loading" @click="emits('btnClick')">
+    <button v-if="!to" :class="{ 'main-button--disabled': disabled }" :type="type" :disabled="loading || disabled" @click="emits('btnClick')">
         <div v-if="loading" class="main-button__loader"></div>
         <slot></slot>
     </button>
@@ -23,5 +23,10 @@ defineProps({
         type: Boolean,
         default: false,
     },
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
 });
+
 </script>
