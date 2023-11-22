@@ -8,7 +8,7 @@ import NewContactIcon from "@/components/icons/NewContactIcon.vue";
 import MainForm from "@/components/forms/MainForm.vue";
 import { getAuth } from "firebase/auth";
 import User from '@/request/User.js'
-import { showErrorAlert } from '@/components/alerts/sweetAlerts.js'
+import { showErrorAlert, showSuccessAlert } from '@/components/alerts/sweetAlerts.js'
 import { removeSpaces, removeEmail } from '@/components/utils/hydration/dataFormater.js';
 import MainTitle from "@/components/sections/MainTitle.vue";
 
@@ -29,16 +29,19 @@ const addContact = async () => {
     const newContactPhone = await User.getField('phone', removeSpaces(form.value.phone));
     const existingContactDoc =  await User.getDoc('phone', removeEmail(getAuth().currentUser.providerData[0].email));
 
-    if(existingContactDoc[0].contacts.some(contact => contact.phone === newContactPhone)) {
+    if(existingContactDoc[0].contacts === undefined) {
+      existingContactDoc[0].contacts = [];
+    } 
+    else if(existingContactDoc[0].contacts.some(contact => contact.phone === newContactPhone)) {
       return showErrorAlert('Error', 'This contact already exists in your contact list');
     }
 
     existingContactDoc[0].contacts.push({ phone: newContactPhone, name: form.value.name });
     await User.update(existingContactDoc[0]);
+    return showSuccessAlert('Success', 'This contact was added to your contact list.');
 
   }
   catch(errorResponse) {
-    isProcessing.value = false;
     showErrorAlert('Error', 'There`s no user with this phone number on V-Card.');
   }
 }
