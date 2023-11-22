@@ -8,3 +8,12 @@ export const showSuccessAlert = (title, text) => {
     confirmButtonColor: '#1A87DC',
   });
 };
+
+export const showErrorAlert = (title, text) => {
+  Swal.fire({
+    icon: 'error',
+    title: title,
+    text: text,
+    confirmButtonColor: '#F83540',
+  });
+};
