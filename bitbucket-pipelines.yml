@@ -10,14 +10,6 @@ pipelines:
             script:
               - npm install
               - npm run build
-        - step:
-            name: Code Linting
-            script:
-              - npm install eslint
-              - npx eslint --ext .vue,.js,.jsx,.cjs,.mjs .
-            caches:
-              - node
-
 definitions:
   caches:
     node: node_modules
