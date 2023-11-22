@@ -1,4 +1,4 @@
-//import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -24,6 +24,11 @@ const router = createRouter({
   routes,
 })
 
-
+// watcher 
+router.beforeEach((to, from, next) => {
+  onAuthStateChanged(getAuth(), (user) => {
+    user ? next() : next({ name: 'Register' })
+  })
+})
 
 export default router
