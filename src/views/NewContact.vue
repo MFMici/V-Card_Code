@@ -11,8 +11,10 @@ import User from '@/request/User.js'
 import { showErrorAlert, showSuccessAlert } from '@/components/alerts/sweetAlerts.js'
 import { removeSpaces, removeEmail } from '@/components/utils/hydration/dataFormater.js';
 import MainTitle from "@/components/sections/MainTitle.vue";
+import { useRouter } from 'vue-router';
 
 const errorStore = useErrorStore()
+const router = useRouter();
 const isProcessing = ref(false);
 
 const form = ref({
@@ -38,8 +40,8 @@ const addContact = async () => {
 
     existingContactDoc[0].contacts.push({ phone: newContactPhone, name: form.value.name });
     await User.update(existingContactDoc[0]);
-    return showSuccessAlert('Success', 'This contact was added to your contact list.');
-
+    showSuccessAlert('Success', 'This contact was added to your contact list.');
+    router.push({ name: 'Contacts' });
   }
   catch(errorResponse) {
     showErrorAlert('Error', 'There`s no user with this phone number on V-Card.');
