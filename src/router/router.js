@@ -13,6 +13,14 @@ const routes = [
     component: () => import('@/views/RegisterView.vue'),
   },
   {
+    path: '/contacts',
+    name: 'Contacts',
+    component: () => import('@/views/ContactsView.vue'),
+    meta: {
+      requiresAuth: true
+    },
+  },
+  {
     path: '/new-contact',
     name: 'new-contact',
     component: () => import('@/views/NewContact.vue'),

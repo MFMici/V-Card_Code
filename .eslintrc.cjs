@@ -9,7 +9,7 @@ module.exports = {
     "prettier"
   ],
   rules: {
-    "vue/attribute-hyphenation": "off",
-    "vue/script-setup-uses-vars": "error"
+    //"vue/attribute-hyphenation": "off",
+    //"vue/script-setup-uses-vars": "error"
   }
 }
