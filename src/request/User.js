@@ -24,8 +24,7 @@ export default {
         return updateDoc(userDocRef, data)
     },
 
-    //GetDoc
-    async findBy(field, data) {
+    async getDoc(field, data) {
         try {
             const querySnapshot = await getDocs(query(collection(getFirestore(), 'users'), where(field, '==', data)));
             return querySnapshot.docs.map(doc => doc.data());
@@ -34,8 +33,7 @@ export default {
             console.error('Error getting ' + field + ':', error.message);
         }
     },
-    //GetField
-    async getContact(field, data) {
+    async getField(field, data) {
             const querySnapshot = await getDocs(query(collection(getFirestore(), 'users'), where(field, '==', data)));
             return querySnapshot.docs[0].data()[field];
     }
