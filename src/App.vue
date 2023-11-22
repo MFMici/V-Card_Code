@@ -1,5 +1,7 @@
 <script setup>
 import { RouterView} from 'vue-router';
+import HourglassLoader from '@/components/icons/HourglassLoader.vue'
+
 </script>
 
 <template>
@@ -12,7 +14,7 @@ import { RouterView} from 'vue-router';
 
           <!-- loading state -->
           <template #fallback>
-            Loading...
+          <HourglassLoader />
           </template>
         </Suspense>
     </Transition>
