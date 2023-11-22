@@ -31,7 +31,7 @@ export const validateInput = async (fieldName, value, isNew) => {
     }
 
     if (isNew) {
-      const response = await User.findBy('email', value.replace(/\s/g, '') + '@gmail.com');
+      const response = await User.getDoc('email', value.replace(/\s/g, '') + '@gmail.com');
       if (response.length > 0) {
         return {
           messages: ['Phone number already exists'],

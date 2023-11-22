@@ -20,11 +20,11 @@ export default {
         }
     },
     update(data) {
-        const userDocRef = doc(collection(getFirestore(), 'users'), localStorage.getItem('token'))
+        const userDocRef = doc(collection(getFirestore(), 'users'), getAuth().currentUser.uid)
         return updateDoc(userDocRef, data)
     },
 
-    async findBy(field, data) {
+    async getDoc(field, data) {
         try {
             const querySnapshot = await getDocs(query(collection(getFirestore(), 'users'), where(field, '==', data)));
             return querySnapshot.docs.map(doc => doc.data());
@@ -32,5 +32,9 @@ export default {
         catch (error) {
             console.error('Error getting ' + field + ':', error.message);
         }
+    },
+    async getField(field, data) {
+            const querySnapshot = await getDocs(query(collection(getFirestore(), 'users'), where(field, '==', data)));
+            return querySnapshot.docs[0].data()[field];
     }
 }

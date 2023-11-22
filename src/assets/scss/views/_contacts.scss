@@ -1,0 +1,44 @@
+.contact__title {
+  color: $darkColor;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  position: absolute;
+  width: 100%;
+  margin:auto;
+}
+
+.contact__header__wrapper {
+  line-height: normal;
+  display: flex;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  position:relative;
+}
+
+.contact__buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.contact__form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.contact__inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
