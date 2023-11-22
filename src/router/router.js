@@ -16,6 +16,9 @@ const routes = [
     path: '/new-contact',
     name: 'new-contact',
     component: () => import('@/views/NewContact.vue'),
+    meta: {
+      requiresAuth: true
+    },
   }
 ]
 
@@ -24,10 +27,12 @@ const router = createRouter({
   routes,
 })
 
-// watcher 
 router.beforeEach((to, from, next) => {
   onAuthStateChanged(getAuth(), (user) => {
-    user ? next() : next({ name: 'Register' })
+    if (to.meta.requiresAuth && user == null) {
+      next({name: 'Register'})
+    }
+    next()
   })
 })
 
