@@ -1,5 +1,4 @@
 <script setup>
-import MainContainer from '@/components/containers/MainContainer.vue';
 import MainButton from '@/components/buttons/MainButton.vue';
 import BasicInput from '@/components/inputs/BasicInput.vue'
 import { ref, computed } from 'vue'
@@ -46,7 +45,6 @@ const registerUser = async () => {
   <CodeModal
   v-if="openModal" v-model:ready="isReady" type="N" :handleLogic="registerUser" :to="{ name: 'Dashboard' }"
     @update:ready="handleUpdateReady" />
-  <MainContainer>
     <div class="container__direction-column">
       <h1 class="register__title mt-50">Register and start transferring</h1>
       <div class="register__form-wrapper">
@@ -66,6 +64,5 @@ v-model:value="form.password" name="password" label="Password" type="password"
         </div>
       </div>
     </div>
-  </MainContainer>
 </template>
 

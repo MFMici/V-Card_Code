@@ -4,12 +4,10 @@ import HourglassLoader from '@/components/icons/HourglassLoader.vue'
 import MainMenu from '@/components/layouts/MainMenu.vue'
 import MainContainer from "@/components/containers/MainContainer.vue";
 import { useRoute } from 'vue-router';
-import {computed} from "vue";
 
 const route = useRoute();
-const isMenuEnabled = computed(() => {
-  return !!(route.name === 'Contacts');
-});
+
+const menuRoutes = ['Contacts', 'Dashboard']
 
 </script>
 
@@ -29,6 +27,6 @@ const isMenuEnabled = computed(() => {
         </Transition>
       </template>
     </RouterView>
-    <MainMenu v-if="isMenuEnabled" />
+    <MainMenu v-if="menuRoutes?.includes(route.name)"/>
   </MainContainer>
 </template>

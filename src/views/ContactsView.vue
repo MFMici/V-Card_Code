@@ -1,5 +1,4 @@
 <script setup>
-import MainContainer from '@/components/containers/MainContainer.vue'
 import ImportContactsIcon from '@/components/icons/ImportContactsIcon.vue'
 import { ref, watch } from 'vue'
 import MainTitle from "@/components/sections/MainTitle.vue"

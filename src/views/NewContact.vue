@@ -1,5 +1,4 @@
 <script setup>
-import MainContainer from '@/components/containers/MainContainer.vue';
 import MainButton from '@/components/buttons/MainButton.vue';
 import BasicInput from '@/components/inputs/BasicInput.vue'
 import { ref, computed } from 'vue'
@@ -76,8 +75,7 @@ const saveImportedContacts = (contacts, newContact) => {
 </script>
 
 <template>
-  <MainForm v-model:is-processing="isProcessing" :handleLogic="addContact">
-    <MainContainer>
+  <MainForm v-model:is-processing="isProcessing" :handleLogic="addContact" class="h-100">
       <div class="container__direction-column">
         <MainTitle title="New contact" class="mt-50"/>
         <div class="contact__form-wrapper">
@@ -94,6 +92,5 @@ const saveImportedContacts = (contacts, newContact) => {
           </div>
         </div>
       </div>
-    </MainContainer>
   </MainForm>
 </template>
