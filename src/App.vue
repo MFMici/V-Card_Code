@@ -17,7 +17,7 @@ const isMenuEnabled = computed(() => {
   <MainContainer v-if="isMenuEnabled">
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
-        <Transition mode="out-in">
+        <Transition mode="in-out">
           <Suspense>
             <!-- main content -->
             <component :is="Component"></component>
@@ -34,7 +34,7 @@ const isMenuEnabled = computed(() => {
 
   <RouterView v-else v-slot="{ Component }">
     <template v-if="Component">
-      <Transition mode="out-in">
+      <Transition mode="in-out">
         <Suspense>
           <!-- main content -->
           <component :is="Component"></component>

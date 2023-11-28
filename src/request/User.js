@@ -35,6 +35,6 @@ export default {
     },
     async getField(field, data) {
             const querySnapshot = await getDocs(query(collection(getFirestore(), 'users'), where(field, '==', data)));
-            return querySnapshot.docs[0].data()[field];
+            return querySnapshot.docs[0]?.data()[field];
     }
 }

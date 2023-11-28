@@ -44,7 +44,7 @@ const registerUser = async () => {
 
 <template>
   <CodeModal
-v-if="openModal" v-model:ready="isReady" type="N" :handleLogic="registerUser" :to="{ name: 'Home' }"
+  v-if="openModal" v-model:ready="isReady" type="N" :handleLogic="registerUser" :to="{ name: 'Dashboard' }"
     @update:ready="handleUpdateReady" />
   <MainContainer>
     <div class="container__direction-column">
