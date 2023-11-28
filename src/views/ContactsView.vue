@@ -95,7 +95,6 @@ watch(searchTerm, (newValue, oldValue) => {
 </script>
 
 <template>
-    <MainContainer>
         <div class="container__direction-column">
             <div class="input__group-col">
                 <MainTitle title="Contacts" type="N" class="mt-50" />
@@ -111,5 +110,4 @@ watch(searchTerm, (newValue, oldValue) => {
                 </div>
             </div>
         </div>
-    </MainContainer>
 </template>
