@@ -8,13 +8,13 @@ import {computed} from "vue";
 
 const route = useRoute();
 const isMenuEnabled = computed(() => {
-  return route.name === 'Contacts';
+  return !!(route.name === 'Contacts');
 });
 
 </script>
 
 <template>
-  <MainContainer v-if="isMenuEnabled">
+  <MainContainer>
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
         <Transition mode="in-out">
@@ -29,22 +29,6 @@ const isMenuEnabled = computed(() => {
         </Transition>
       </template>
     </RouterView>
-    <MainMenu />
+    <MainMenu v-if="isMenuEnabled" />
   </MainContainer>
-
-  <RouterView v-else v-slot="{ Component }">
-    <template v-if="Component">
-      <Transition mode="in-out">
-        <Suspense>
-          <!-- main content -->
-          <component :is="Component"></component>
-
-          <!-- loading state -->
-          <template #fallback>
-            <HourglassLoader />
-          </template>
-        </Suspense>
-      </Transition>
-    </template>
-  </RouterView>
 </template>

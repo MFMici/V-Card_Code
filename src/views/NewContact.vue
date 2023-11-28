@@ -79,7 +79,7 @@ const saveImportedContacts = (contacts, newContact) => {
   <MainForm v-model:is-processing="isProcessing" :handleLogic="addContact">
     <MainContainer>
       <div class="container__direction-column">
-        <MainTitle title="New contact" />
+        <MainTitle title="New contact" class="mt-50"/>
         <div class="contact__form-wrapper">
           <div class="contact__inputs-wrapper">
             <NewContactIcon />

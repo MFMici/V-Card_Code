@@ -48,7 +48,7 @@ const registerUser = async () => {
     @update:ready="handleUpdateReady" />
   <MainContainer>
     <div class="container__direction-column">
-      <h1 class="register__title">Register and start transferring</h1>
+      <h1 class="register__title mt-50">Register and start transferring</h1>
       <div class="register__form-wrapper">
         <div class="register__inputs-wrapper">
           <BasicInput
