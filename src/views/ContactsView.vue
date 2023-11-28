@@ -1,5 +1,4 @@
 <script setup>
-import MainContainer from '@/components/containers/MainContainer.vue'
 import ImportContactsIcon from '@/components/icons/ImportContactsIcon.vue'
 import { ref, watch } from 'vue'
 import MainTitle from "@/components/sections/MainTitle.vue"
@@ -11,13 +10,12 @@ const contacts = ref([])
 const allContacts = ref([])
 const opts = { multiple: true }
 
-const fetchContacts = () => {
-    fetchImportedContacts(false)
+const fetchContacts = async () => {
+    await fetchImportedContacts(false)
     if (contacts.value === undefined) {
         contacts.value = []
         allContacts.value = []
     }
-
 }
 // We validate if the contacts we are importing have an account on V-Card
 const importNewContacts = async () => {
@@ -85,7 +83,7 @@ const searchContacts = (searchValue) => {
     })
 }
 
-fetchContacts()
+await fetchContacts()
 
 watch(searchTerm, (newValue, oldValue) => {
     if (newValue.length <= oldValue.length) {
@@ -96,14 +94,13 @@ watch(searchTerm, (newValue, oldValue) => {
 </script>
 
 <template>
-    <MainContainer>
         <div class="container__direction-column">
             <div class="input__group-col">
-                <MainTitle title="Contacts" type="N" />
+                <MainTitle title="Contacts" type="N" class="mt-50" />
                 <input type="text" name="searchTerm" placeholder="Type here ..." :required="required" v-model="searchTerm"
                     class="input__field" />
                 <div class="single-contact__wrapper">
-                    <button @click="importNewContacts" style="display: flex">Import Contacts
+                    <button class="single-contact__import-contacts" @click="importNewContacts">Import Contacts
                         <ImportContactsIcon />
                     </button>
                     <SingleContact 
@@ -112,5 +109,4 @@ watch(searchTerm, (newValue, oldValue) => {
                 </div>
             </div>
         </div>
-    </MainContainer>
 </template>

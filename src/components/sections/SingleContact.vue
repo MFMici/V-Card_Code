@@ -7,12 +7,17 @@
             <div class="single-contact__phone">
                 <p>{{ phone }}</p>
             </div>
-            <div class="single-contact__member">
+            <div v-if="isTransaction" class="single-contact__member">
+                <h3>{{ date }}</h3>
+            </div>
+            <div  v-else class="single-contact__member">
                 <h3>{{ member }}</h3>
             </div>
+
         </div>
         <div class="single-contact__button">
-            <button v-if="member == 'V-Card User'" class="cube-button"><LogoButtonIcon/></button>
+            <span v-if="isTransaction" class="font-bold primary-font">-$29.99</span>
+            <button v-else class="cube-button"><LogoButtonIcon/></button>
         </div>
     </div>
 </template>
@@ -28,6 +33,14 @@ defineProps({
         type: String,
         required: true,
     },
+    date: {
+        type: String,
+        required: true,
+    },
+    isTransaction: {
+        type: Boolean,
+        default: false
+    }
 });
 </script>
   

@@ -55,6 +55,7 @@
     line-height: normal;
     opacity: 0;
     z-index: 3;
+    text-align: center;
 }
 
 .home__container-slogan-bold {
@@ -67,7 +68,6 @@
 }
 
 .home__container-buttons {
-    padding: 0px 30px;
     position: absolute;
     display: flex;
     flex-direction: column;
