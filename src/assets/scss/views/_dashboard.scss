@@ -23,18 +23,19 @@
 
 .dashboard__container-top {
   @include container;
-  height: 243px;
+  height: 30%;
   flex-shrink: 0;
   border-radius: 0px 0px 10px 10px;
   background: #1A87DC;
   position: absolute;
   top: 0;
   left: 0;
+  display: grid;
+  grid-template-rows: 2fr 2fr;
+  padding: 0px 20px 40px 40px
 }
 
 .dashboard__container-top-content{
-  width: 178px;
-  height: 23px;
   flex-shrink: 0;
   color: #FFF;
   text-align: center;
@@ -63,3 +64,68 @@
   justify-content: center;
   @include container;
 }
+
+
+.dashboard__row-upper{
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  align-items: center;
+}
+
+.dashboard__row-bottom{
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  align-items: end;
+}
+
+.t-align-left{
+  text-align: left;
+}
+
+.dashboard__user{
+  color: #C4C4C4;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.dashboard__total-balance{
+  color: #FFF;
+  font-family: $primaryFont;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.dashboard__balance{
+  color: #FFF;
+  font-family: $primaryFont;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.dashboard__icons{
+display: flex;
+justify-content: center;
+align-items: center;
+padding-bottom: 10px;
+gap: 15px;
+}
+
+.content-align-right{
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+
+
+
+
+
+
+
