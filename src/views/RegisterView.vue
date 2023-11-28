@@ -66,5 +66,6 @@ v-model:value="form.password" name="password" label="Password" type="password"
         </div>
       </div>
     </div>
-  </MainContainer></template>
+  </MainContainer>
+</template>
 

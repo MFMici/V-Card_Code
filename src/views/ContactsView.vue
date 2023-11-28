@@ -50,18 +50,16 @@ watch(searchTerm, (newValue, oldValue) => {
 </script>
 
 <template>
-    <MainContainer>
-        <div class="container__direction-column">
-            <div class="input__group-col">
-                <MainTitle title="Contacts" type="N" />
-                <input
-                    type="text" name="searchTerm" placeholder="Type here ..." :required="required"
-                    v-model="searchTerm" class="input__field"
-                />
-                <div class="single-contact__wrapper">
-                <SingleContact v-for="(contact, key) in contacts" :key="key" :name="contact.name" :phone="contact.phone" />
-            </div>
-            </div>
-        </div>
-    </MainContainer>
+  <div class="container__direction-column">
+      <div class="input__group-col">
+          <MainTitle title="Contacts" type="N" />
+          <input
+              type="text" name="searchTerm" placeholder="Type here ..." :required="required"
+              v-model="searchTerm" class="input__field"
+          />
+          <div class="single-contact__wrapper">
+          <SingleContact v-for="(contact, key) in contacts" :key="key" :name="contact.name" :phone="contact.phone" />
+      </div>
+      </div>
+  </div>
 </template>

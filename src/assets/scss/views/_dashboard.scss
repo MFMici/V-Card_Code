@@ -1,0 +1,65 @@
+.dashboard__container {
+  background: white;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard__container-inner {
+  @include container;
+  display: flex;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.dashboard__container-top {
+  @include container;
+  height: 243px;
+  flex-shrink: 0;
+  border-radius: 0px 0px 10px 10px;
+  background: #1A87DC;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dashboard__container-top-content{
+  width: 178px;
+  height: 23px;
+  flex-shrink: 0;
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.dashboard__container-send-money {
+  width: 348px;
+  height: 39px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #F7BE20;
+  margin-top: 10px; /* Adjusted margin-top */
+  margin-bottom: 20px; /* Added margin-bottom for separation */
+}
+
+.dashboard__main-container {
+  background: white;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  @include container;
+}
