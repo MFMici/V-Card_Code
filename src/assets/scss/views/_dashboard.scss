@@ -23,11 +23,10 @@
 
 .dashboard__container-top {
   @include container;
-  height: 30%;
-  flex-shrink: 0;
+
   border-radius: 0px 0px 10px 10px;
   background: #1A87DC;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   display: grid;
