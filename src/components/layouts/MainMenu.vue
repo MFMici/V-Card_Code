@@ -12,20 +12,28 @@ const route = useRoute();
   <div class="main-menu__container">
     <ul class="main-menu__items">
       <li class="main-menu__item">
+        <router-link :to="{name: 'Dashboard'}" class="main-menu__item-link">
         <HomeIcon :active="route.name ==='Dashboard'" class="main-menu__icon" />
         <span :class="route.name ==='Dashboard' ? 'main-menu__font--active' : 'main-menu__font'">Home</span>
+      </router-link>
       </li>
       <li class="main-menu__item">
+        <router-link :to="{name: 'Dashboard'}" class="main-menu__item-link">
         <TransactionsIcon :active="route.name ==='Transactions'" class="main-menu__icon" />
-        <span :class="route.name ==='Transactions' ? 'main-menu__font--active' : 'main-menu__font'">Transacations</span>
+       <span :class="route.name ==='Transactions' ? 'main-menu__font--active' : 'main-menu__font'">Transacations</span>
+      </router-link>
       </li>
       <li class="main-menu__item">
+        <router-link :to="{name: 'Contacts'}" class="main-menu__item-link">
         <ContactsIcon :active="route.name ==='Contacts'" class="main-menu__icon" />
         <span :class="route.name ==='Contacts' ? 'main-menu__font--active' : 'main-menu__font'">Contacts</span>
+      </router-link>
       </li>
       <li class="main-menu__item">
+        <router-link :to="{name: 'Dashboard'}" class="main-menu__item-link">
         <ProfileIcon :active="route.name ==='Profile'" class="main-menu__icon" />
         <span :class="route.name ==='Profile' ? 'main-menu__font--active' : 'main-menu__font'">Profile</span>
+      </router-link>
       </li>
     </ul>
   </div>

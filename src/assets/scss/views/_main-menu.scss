@@ -3,6 +3,7 @@
   justify-content: center;
   gap: calc(20% - 10px);
 }
+
 .main-menu__container{
   display: flex;
   justify-content: center;
@@ -15,7 +16,7 @@
   bottom: 20px;
 }
 
-.main-menu__item{
+.main-menu__item-link{
   display: flex;
   flex-direction: column;
   justify-content: center;
