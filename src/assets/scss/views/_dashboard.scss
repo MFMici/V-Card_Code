@@ -78,11 +78,6 @@
   grid-template-columns: 2fr 2fr;
   align-items: end;
 }
-
-.t-align-left{
-  text-align: left;
-}
-
 .dashboard__user{
   color: #C4C4C4;
 font-family: Poppins;
@@ -112,7 +107,7 @@ line-height: normal;
 
 .dashboard__icons{
 display: flex;
-justify-content: end;
+justify-content: flex-end;
 align-items: center;
 padding-bottom: 10px;
 gap: 10px;
