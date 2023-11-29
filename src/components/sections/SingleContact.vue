@@ -8,23 +8,46 @@
                 <p>{{ phone }}</p>
             </div>
             <div v-if="isTransaction" class="single-contact__member">
-                <h3>{{ date }}</h3>
+                <h3>{{ formatedDate }} <br> {{ distanceDate }}</h3>
             </div>
             <div  v-else class="single-contact__member">
                 <h3>{{ member }}</h3>
             </div>
 
         </div>
-        <div class="single-contact__button">
-            <span v-if="isTransaction" class="font-bold primary-font">-$29.99</span>
-            <button v-else class="cube-button"><LogoButtonIcon/></button>
+        <div v-if="!isTransaction" class="single-contact__button">
+            <button class="cube-button"><LogoButtonIcon/></button>
         </div>
+        <div v-else class="single-contact__info">
+            <div class="single-contact__phone">
+                <p class="t-align-right font-bold primary-font">{{ money }}€</p>
+            </div>
+            <div class="single-contact__phone">
+                <p class="t-align-right primary-font">{{ balance }}€</p>
+            </div>
+        </div>
+
     </div>
 </template>
   
 <script setup>
 import LogoButtonIcon from '@/components/icons/LogoButtonIcon.vue';
-defineProps({
+import { computed } from 'vue'
+import { format, intlFormatDistance } from 'date-fns'
+
+
+const formatedDate = computed(() => {
+  const formatted = format(new Date(props.date), 'dd/MM/yy HH:mm');
+  return formatted;
+});
+
+const distanceDate = computed(() => {
+  const formatted = intlFormatDistance(new Date(props.date), new Date(), { addSuffix: true });
+  return formatted;
+});
+
+
+const props = defineProps({
     member: {
         type: String,
         required: true,
@@ -40,7 +63,15 @@ defineProps({
     isTransaction: {
         type: Boolean,
         default: false
-    }
+    },
+    money: {
+        type: Number,
+        required: true,
+    },
+    balance: {
+        type: Number,
+        required: true,
+    },
 });
 </script>
   

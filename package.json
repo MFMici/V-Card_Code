@@ -10,7 +10,6 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "start:emulator": "firebase emulators:exec 'npm start' --import=scripts/firebase/firestore-export/"
-
   },
   "dependencies": {
     "@vueform/multiselect": "^2.6.2",
