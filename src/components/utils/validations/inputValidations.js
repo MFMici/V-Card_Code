@@ -79,6 +79,31 @@ export const validateInput = async (fieldName, value, isNew) => {
     }
   }
 
+  if (fieldName === 'payment') {
+    const isValidTransfer = /^[1-9]\d*(\.\d{1,2})?$/.test(value) &&  parseFloat(value) > 0;
+    
+    if(value < 1){
+      return {
+        messages: ['The transfer must be equal or greater than 1 euro'],
+        isValid: false,
+      }
+    }
+
+    if(value > 10000){
+      return {
+        messages: ['The transfer must be equal or less than 10000 euros'],
+        isValid: false,
+      }
+    }
+
+    if(!isValidTransfer){
+      return {
+        messages: ['The transfer should be a number with 2 decimal places'],
+        isValid: false,
+      }
+    }
+  }
+
   return {
     messages: validationMessages,
     isValid: validationMessages.length === 0,
