@@ -38,8 +38,16 @@ const routes = [
   },
   {
     path: '/send-money',
-    name: 'send-money',
+    name: 'SendMoney',
     component: () => import('@/views/SendMoneyView.vue'),
+    meta: {
+      requiresAuth: true
+    },
+  },
+  {
+    path: '/transactions',
+    name: 'Transactions',
+    component: () => import('@/views/TransactionsView.vue'),
     meta: {
       requiresAuth: true
     },
