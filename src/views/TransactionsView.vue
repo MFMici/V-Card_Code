@@ -4,9 +4,8 @@ import SingleContact from "@/components/sections/SingleContact.vue"
 import User from '@/request/User.js'
 import NewContactIcon from "@/components/icons/NewContactIcon.vue";
 import { orderBy, where, whereBetweenDates } from '@/components/utils/filters/filters.js';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { showErrorAlert } from '@/components/alerts/sweetAlerts.js'
-
 
 const userCollection = await User.getMy()
 const filteredCollection = ref([])
@@ -15,8 +14,12 @@ const endDate = ref('');
 const orderActive = ref('asc');
 const filterActive = ref('');
 const dateActive = ref(false);
+const isTransactionsAvailable = computed(() => {
+    return userCollection.hasOwnProperty('transfers')
+})
 
 filteredCollection.value = { ...userCollection }
+
 
 const resetFilters = () => {
     startDate.value = '';
@@ -57,15 +60,15 @@ const filterByDateRange = () => {
             <MainTitle title="Contacts" type="" class="mt-55" />
             <div class="transationcs__filters">
                 <button class="transactions__filter" :class="orderActive == 'asc' ? 'active' : ''"
-                    @click="orderByDate('asc')">ASC</button>
+                    @click="orderByDate('asc')" :disabled="!isTransactionsAvailable">ASC</button>
                 <button class="transactions__filter" :class="orderActive == 'desc' ? 'active' : ''"
-                    @click="orderByDate('desc')">DESC</button>
+                    @click="orderByDate('desc')" :disabled="!isTransactionsAvailable">DESC</button>
             </div>
             <div class="transationcs__filters">
                 <button class="transactions__filter" :class="filterActive == 'send' ? 'active' : ''"
-                    @click="filterBy('type', 'send')">Expenses</button>
+                    @click="filterBy('type', 'send')" :disabled="!isTransactionsAvailable">Expenses</button>
                 <button class="transactions__filter" :class="filterActive == 'receive' ? 'active' : ''"
-                    @click="filterBy('type', 'receive')">Incomes</button>
+                    @click="filterBy('type', 'receive')" :disabled="!isTransactionsAvailable">Incomes</button>
             </div>
             <div class="transationcs__filters">
                 <input type="date" class="transactions__filter" v-model="startDate" placeholder="Start Date">
@@ -74,7 +77,7 @@ const filterByDateRange = () => {
             <div class="transationcs__filters">
                 <button class="transactions__filter"
                     :class="{ 'disabled': startDate.length === 0 || endDate.length === 0, 'active': dateActive }"
-                    @click="filterByDateRange" :disabled="startDate.length === 0 || endDate.length === 0">
+                    @click="filterByDateRange" :disabled="startDate.length === 0 || endDate.length === 0 || !isTransactionsAvailable">
                     Filter by Date Range
                 </button>
 
@@ -83,7 +86,7 @@ const filterByDateRange = () => {
                 <button class="transactions__filter" @click="resetFilters">Reset</button>
             </div>
         </div>
-        <SingleContact v-if="filteredCollection.transfers.length > 0" v-for="(contact, key) in filteredCollection.transfers"
+        <SingleContact v-if="isTransactionsAvailable" v-for="(contact, key) in filteredCollection.transfers"
             :key="key" :member="null" :phone="contact.phone ? contact.phone : contact.tel" :date="contact.createdAt"
             :type="contact.type" :isTransaction="true" :money="contact.payment" :balance="contact.balance_after" />
         <div v-else>
