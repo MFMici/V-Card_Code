@@ -1,3 +1,5 @@
+import { parse, getTime } from 'date-fns';
+
 export const orderBy =  (data, field, order) => {
     if(order === 'asc'){
         return data.sort((a, b) => a[field] - b[field])
@@ -10,7 +12,7 @@ export const limit = (data, limit) => {
 }
 
 export const where = (data, field, value) => {
-    return data.filter(item => item[field] === value)
+    return data.filter(item => item[field] === value);
 }
 
 export const whereMonth = (data, field, month) => {
@@ -20,12 +22,13 @@ export const whereMonth = (data, field, month) => {
     });
 };
 
+
 export const whereBetweenDates = (data, field, startDate, endDate) => {
-    const startTimestamp = new Date(startDate).getTime();
-    const endTimestamp = new Date(endDate).getTime();
+    const startTimestamp = getTime(parse(startDate, 'yyyy-MM-dd', new Date()));
+    const endTimestamp = getTime(parse(endDate, 'yyyy-MM-dd', new Date()));
 
     return data.filter(item => {
-        const date = new Date(item[field]).getTime();
-        return date >= startTimestamp && date <= endTimestamp;
+        const timestamp = item[field];
+        return timestamp >= startTimestamp && timestamp <= endTimestamp;
     });
 };

@@ -3,7 +3,7 @@
     <router-link class="add-icon__position" v-if="type === 'N'" :to="{name: 'new-contact'}">
       <AddIcon />
     </router-link>
-    <BackButton v-else @click="router.go(-1)" />
+    <BackButton v-else-if="type === 'C'" @click="router.go(-1)" />
     <h1 class="contact__title">{{title}}</h1>
   </div>
 </template>
