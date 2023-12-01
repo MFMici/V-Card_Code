@@ -56,8 +56,13 @@ const codeConfirmation = async () => {
         try {
             concatenatedDigits.value.spendable_balance = 0
             concatenatedDigits.value.deposit_balance = 0
+            concatenatedDigits.value.transfers = []
+            concatenatedDigits.value.piggy_transfers = []
             await props.handleLogic();
             await User.updateMy(concatenatedDigits.value)
+            localStorage.setItem('piggyBankChecked', 'false')
+            localStorage.setItem('notificationsChecked', 'false')
+            localStorage.setItem('ImportedContacts', '[]')
             showSuccessAlert('Welcome to V-Card', 'V-Card created with success.');
             router.push(props.to)
         } catch (errorResponse) {
@@ -67,7 +72,7 @@ const codeConfirmation = async () => {
     }
     try {
         const userCollection = await User.getMy()
-        if(userCollection.confirmation_code === concatenatedDigits.value.confirmation_code){
+        if (userCollection.confirmation_code === concatenatedDigits.value.confirmation_code) {
             await props.handleLogic();
             return
         }
