@@ -9,8 +9,11 @@ import User from '@/request/User.js'
 import { showErrorAlert, showSuccessAlert } from '@/components/alerts/sweetAlerts.js'
 import { removeSpaces } from '@/components/utils/hydration/dataFormater.js';
 import { useRouter } from 'vue-router'
+import Swal from 'sweetalert2';
+
 const router = useRouter()
 const errorStore = useErrorStore()
+const getPiggyBankChecked = localStorage.getItem('piggyBankChecked') === 'true';
 const isPiggyBankTransaction = router.currentRoute.value.params.type === 'W' || router.currentRoute.value.params.type === 'D';
 
 const form = ref({
@@ -114,6 +117,36 @@ const sendPayment = async () => {
         }
 
         let difference = 0
+
+        if (getPiggyBankChecked && (transferMoney % 1 !== 0)) {
+
+            const result = await Swal.fire({
+                title: 'Round Amount',
+                text: 'Do you want to round the amount?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#1A87DC',
+                cancelButtonColor: '#F83540',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+            })
+
+            if (result.isConfirmed) {
+                difference = Number((Math.ceil(transferMoney) - transferMoney).toFixed(2))
+                userCollection.deposit_balance += difference;
+                userCollection.piggy_transfers.push({
+                    phone: userCollection.phone,
+                    payment: difference,
+                    message: form.value.message,
+                    balance_after: userCollection.deposit_balance,
+                    createdAt: formattedDate,
+                    type: 'receive'
+                });
+
+                await User.updateMy(userCollection)
+            }
+        }
+
         userCollection.spendable_balance = userCollection.spendable_balance - transferMoney - difference;
 
         userCollection.transfers.push({
