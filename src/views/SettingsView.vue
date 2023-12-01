@@ -3,19 +3,20 @@ import MainButton from '@/components/buttons/MainButton.vue';
 import HeartIcon from "@/components/icons/HeartIcon.vue";
 import MainTitle from "@/components/sections/MainTitle.vue";
 import DestroyModal from '@/components/modals/DestroyModal.vue';
-
 import { ref } from 'vue'
-
 const openModal = ref(false)
 
 
 const handlePiggyBankChange = (event) => {
-    console.log(event.target.checked)
+    localStorage.setItem('piggyBankChecked', event.target.checked)
 }
 
 const handleNotificationsChange = (event) => {
-    console.log(event.target.checked)
+    localStorage.setItem('notificationsChecked', event.target.checked)
 }
+
+const getNotificationsChecked = localStorage.getItem('notificationsChecked') === 'true';
+const getPiggyBankChecked = localStorage.getItem('piggyBankChecked') === 'true';
 
 </script>
 
@@ -33,12 +34,12 @@ const handleNotificationsChange = (event) => {
                 <h1 class="settings__subtitle">Round Up</h1>
                 <p class="settings__subtitle">(It gets stored in the piggy bank vault)</p>
             </div>
-            <input type="checkbox" name="piggy" @change="handlePiggyBankChange" />
+            <input type="checkbox" name="piggy" :checked="getPiggyBankChecked" @change="handlePiggyBankChange" />
         </div>
         <h1 class="settings__title mt-50">Notifications</h1>
         <div class="settings__switcher">
             <h1 class="settings__subtitle">Notifications:</h1>
-            <input type="checkbox" name="notifications" @change="handleNotificationsChange" />
+            <input type="checkbox" name="notifications" :checked="getNotificationsChecked" @change="handleNotificationsChange" />
         </div>
     </div>
 </template>
