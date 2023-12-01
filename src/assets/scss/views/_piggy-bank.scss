@@ -1,0 +1,16 @@
+.piggy-bank__button-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.piggy-bank__button{
+text-align: center;
+font-family: $primaryFont;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 10px;
+}
