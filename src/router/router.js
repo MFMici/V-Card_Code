@@ -37,7 +37,7 @@ const routes = [
     },
   },
   {
-    path: '/send-money',
+    path: '/send-money/:type',
     name: 'SendMoney',
     component: () => import('@/views/SendMoneyView.vue'),
     meta: {
