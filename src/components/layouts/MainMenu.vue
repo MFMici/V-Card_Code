@@ -18,7 +18,7 @@ const route = useRoute();
       </router-link>
       </li>
       <li class="main-menu__item">
-        <router-link :to="{name: 'Dashboard'}" class="main-menu__item-link">
+        <router-link :to="{name: 'Transactions'}" class="main-menu__item-link">
         <TransactionsIcon :active="route.name ==='Transactions'" class="main-menu__icon" />
        <span :class="route.name ==='Transactions' ? 'main-menu__font--active' : 'main-menu__font'">Transacations</span>
       </router-link>

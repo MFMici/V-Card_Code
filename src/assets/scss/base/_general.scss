@@ -28,6 +28,9 @@ body {
 .mt-50{
   margin-top: 50px;
 }
+.mt-55{
+  margin-top: 55px;
+}
 
 .color-black{
   color: $darkColor!important;
@@ -64,7 +67,7 @@ line-height: normal
 }
 
 .t-align-left{
-  text-align: left;
+  text-align: left!important;
 }
 
 .t-align-center{

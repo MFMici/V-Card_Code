@@ -20,7 +20,7 @@
         </div>
         <div v-else class="single-contact__info">
             <div class="single-contact__phone">
-                <p class="t-align-right font-bold primary-font">{{ money }}€</p>
+                <p class="t-align-right font-bold primary-font"><span v-if="type == 'send'"> -</span><span v-else> +</span>{{ money }}€</p>
             </div>
             <div class="single-contact__phone">
                 <p class="t-align-right primary-font">{{ balance }}€</p>
@@ -70,6 +70,10 @@ const props = defineProps({
     },
     balance: {
         type: Number,
+        required: true,
+    },
+    type: {
+        type: String,
         required: true,
     },
 });

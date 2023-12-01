@@ -7,7 +7,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
-const menuRoutes = ['Contacts', 'Dashboard']
+const menuRoutes = ['Contacts', 'Dashboard', 'Transactions', 'SendMoney']
 
 </script>
 
