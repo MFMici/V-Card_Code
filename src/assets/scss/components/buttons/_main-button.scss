@@ -31,6 +31,28 @@
   }
 }
 
+.delete-button {
+  @extend .button; 
+  background-color: #F83540;
+  color: white;
+
+  &:hover {
+      background-color: #e01923;
+  }
+
+}
+
+.settings-button {
+  @extend .button; 
+  text-align: left!important;
+  background-color: $primaryGrey;
+  justify-content: flex-start;
+  color: black;
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
 .secondary-button {
   @extend .button; 
   background-color: $secondaryColor;

@@ -9,7 +9,16 @@ import NewContactIcon from "@/components/icons/NewContactIcon.vue";
 import { orderBy, limit } from '@/components/utils/filters/filters.js';
 
 const userCollection = await User.getMy()
-const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 'desc'), 4)
+
+const fetchUserTransactions =  () => {
+  if(!userCollection.hasOwnProperty('transfers')) return
+  const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 'desc'), 4)
+  return orderdTransactions
+}
+
+
+const orderdTransactions = fetchUserTransactions()
+console.log(orderdTransactions)
 
 </script>
 
@@ -45,7 +54,7 @@ const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 
         <router-link class="color-blue font-thin" :to="{ name: 'Transactions' }"> View all</router-link>
       </div>
     </div>
-    <SingleContact v-if="orderdTransactions.length > 0" v-for="(contact, key) in orderdTransactions" :key="key"
+    <SingleContact v-if="orderdTransactions !== undefined" v-for="(contact, key) in orderdTransactions" :key="key"
       :member="null" :phone="contact.phone ? contact.phone : contact.tel" :date="contact.createdAt" :type="contact.type"
       :isTransaction="true" :money="contact.payment" :balance="contact.balance_after" />
     <div v-else>

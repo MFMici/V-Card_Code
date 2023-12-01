@@ -30,9 +30,9 @@ const route = useRoute();
       </router-link>
       </li>
       <li class="main-menu__item">
-        <router-link :to="{name: 'Dashboard'}" class="main-menu__item-link">
-        <ProfileIcon :active="route.name ==='Profile'" class="main-menu__icon" />
-        <span :class="route.name ==='Profile' ? 'main-menu__font--active' : 'main-menu__font'">Profile</span>
+        <router-link :to="{name: 'Settings'}" class="main-menu__item-link">
+        <ProfileIcon :active="route.name ==='Settings'" class="main-menu__icon" />
+        <span :class="route.name ==='Settings' ? 'main-menu__font--active' : 'main-menu__font'">Settings</span>
       </router-link>
       </li>
     </ul>
