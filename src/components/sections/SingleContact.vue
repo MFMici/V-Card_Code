@@ -16,7 +16,7 @@
 
         </div>
         <div v-if="!isTransaction" class="single-contact__button">
-            <button class="cube-button"><LogoButtonIcon/></button>
+            <router-link :to="{name: 'SendMoney', params: {type: phone}}"><button class="cube-button" ><LogoButtonIcon/></button></router-link>
         </div>
         <div v-else class="single-contact__info">
             <div class="single-contact__phone">
