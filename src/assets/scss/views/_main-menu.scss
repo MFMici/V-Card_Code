@@ -5,19 +5,15 @@
 }
 
 .main-menu__container{
+
   display: flex;
   justify-content: center;
   align-items: center;
   background: #F4F4F6;
-  width: 85%;
-  border-radius: 50px;
+  width: 100%;
   padding: 10px 0;
   position: fixed;
-  bottom: 20px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  -ms-border-radius: 50px;
-  -o-border-radius: 50px;
+  bottom: 0px;
 }
 
 .main-menu__item-link{

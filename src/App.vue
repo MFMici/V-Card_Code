@@ -27,6 +27,6 @@ const menuRoutes = ['Contacts', 'Dashboard', 'Transactions', 'SendMoney', 'Setti
         </Transition>
       </template>
     </RouterView>
-    <MainMenu v-if="menuRoutes?.includes(route.name)"/>
   </MainContainer>
+  <MainMenu v-if="menuRoutes?.includes(route.name)"/>
 </template>
