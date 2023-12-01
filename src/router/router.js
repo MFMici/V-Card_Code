@@ -35,6 +35,14 @@ const routes = [
     meta: {
       requiresAuth: true
     },
+  },
+  {
+    path: '/send-money',
+    name: 'send-money',
+    component: () => import('@/views/SendMoneyView.vue'),
+    meta: {
+      requiresAuth: true
+    },
   }
 ]
 

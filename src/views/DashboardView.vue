@@ -6,20 +6,13 @@ import PiggyBankIcon from "@/components/icons/PiggyBankIcon.vue";
 import { getAuth } from "firebase/auth";
 import { removeEmail } from '@/components/utils/hydration/dataFormater.js';
 import SingleContact from "@/components/sections/SingleContact.vue"
+import User from '@/request/User.js'
+import NewContactIcon from "@/components/icons/NewContactIcon.vue";
+import { orderBy, limit } from '@/components/utils/filters/filters.js';
 
-const contacts = [{
-  date: "Jun 21, 10:24h",
-  phone: "+968 678 209",
-  member: "+968 678 209"
-}, {
-  date: "Jun 21, 10:24h",
-  phone: "+968 678 209",
-  member: "+968 678 209"
-}, {
-  date: "Jun 21, 10:24h",
-  phone: "+968 678 209",
-  member: "+968 678 209"
-}]
+const userCollection = await User.getMy()
+const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 'desc'), 4)
+
 </script>
 
 <template>
@@ -36,7 +29,7 @@ class="single-contact__avatar"
         <div class="dashboard__container-top-content">
           <p class="t-align-left dashboard__user">Hi, {{ removeEmail(getAuth().currentUser.email) }}</p>
           <p class="t-align-left dashboard__total-balance">Total Balance</p>
-          <h1 class="t-align-left dashboard__balance">$2064.59</h1>
+          <h1 class="t-align-left dashboard__balance">{{ userCollection.deposit_balance + userCollection.spendable_balance }} €</h1>
         </div>
         <div class="dashboard__container-top-content">
           <div class="dashboard__icons">
@@ -47,21 +40,29 @@ class="single-contact__avatar"
         </div>
       </div>
     </div>
-    <MainButton class="secondary-button mt-30 color-black" :to="{ name: 'Dashboard' }">Send Money</MainButton>
+    <MainButton class="secondary-button mt-30 color-black" :to="{ name: 'send-money' }">Send Money</MainButton>
     <div class="mt-30 dashboard__row-upper">
       <div class="dashboard__container-top-content t-align-left color-black font-thin"> Last Transactions </div>
       <div class="dashboard__container-top-content content-align-right">
         <router-link class="color-blue font-thin" :to="{ name: 'Dashboard' }"> View all</router-link>
       </div>
     </div>
-    <SingleContact
-      v-for="(contact, key) in contacts" :key="key" 
-      :member="contact.member"
+    <SingleContact v-if="orderdTransactions.length > 0"
+      v-for="(contact, key) in orderdTransactions" :key="key" 
+      :member="null"
       :phone="contact.phone ? contact.phone : contact.tel"
-      :date="contact.date"
+      :date="contact.createdAt"
+      :type = "contact.type"
       :isTransaction="true" 
-      
+      :money="contact.payment"
+      :balance="contact.balance_after"
       />
+      <div v-else>
+        <NewContactIcon />
+        <h1 class="t-align-center  primary-font mt-30">Seems like you don't have any moviments in your account</h1>
+      </div>
+
   </div>
+
 </template>
 

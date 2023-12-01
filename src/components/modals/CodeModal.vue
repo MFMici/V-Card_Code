@@ -8,6 +8,7 @@ import { useErrorStore } from '@/stores/ErrorStore'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import User from '@/request/User.js'
+import { showErrorAlert } from '@/components/alerts/sweetAlerts.js'
 
 
 const router = useRouter()
@@ -53,8 +54,10 @@ const isSubmitDisabled = computed(() => {
 const codeConfirmation = async () => {
     if (props.type === 'N') {
         try {
+            concatenatedDigits.value.spendable_balance = 0
+            concatenatedDigits.value.deposit_balance = 0
             await props.handleLogic();
-            await User.update(concatenatedDigits.value)
+            await User.updateMy(concatenatedDigits.value)
             showSuccessAlert('Welcome to V-Card', 'V-Card created with success.');
             router.push(props.to)
         } catch (errorResponse) {
@@ -63,8 +66,14 @@ const codeConfirmation = async () => {
         return
     }
     try {
-        // Confirm the code here then do the transaction logic behind
-        await props.handleLogic();
+        const userCollection = await User.getMy()
+        if(userCollection.confirmation_code === concatenatedDigits.value.confirmation_code){
+            await props.handleLogic();
+            return
+        }
+
+        return showErrorAlert('Error', 'The confirmation code is incorrect')
+
     } catch (errorResponse) {
         console.error(errorResponse);
     }
