@@ -59,6 +59,14 @@ const routes = [
     meta: {
       requiresAuth: true
     },
+  },
+  {
+    path: '/piggy-bank',
+    name: 'PiggyBank',
+    component: () => import('@/views/PiggyBankView.vue'),
+    meta: {
+      requiresAuth: true
+    },
   }
 ]
 
