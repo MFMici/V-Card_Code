@@ -10,15 +10,7 @@ import { orderBy, limit } from '@/components/utils/filters/filters.js';
 
 const userCollection = await User.getMy()
 
-const fetchUserTransactions =  () => {
-  if(!userCollection.hasOwnProperty('transfers')) return
-  const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 'desc'), 4)
-  return orderdTransactions
-}
-
-
-const orderdTransactions = fetchUserTransactions()
-console.log(orderdTransactions)
+const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 'desc'), 4)
 
 </script>
 
@@ -40,26 +32,30 @@ console.log(orderdTransactions)
         </div>
         <div class="dashboard__container-top-content">
           <div class="dashboard__icons">
-            <ChartIcon />
-            <PiggyBankIcon />
+            <router-link :to="{ name: 'PiggyBank' }">
+              <PiggyBankIcon />
+            </router-link>
             <BellIcon />
           </div>
         </div>
       </div>
     </div>
-    <MainButton class="secondary-button mt-30 color-black" :to="{ name: 'SendMoney' }">Send Money</MainButton>
+    <MainButton class="secondary-button mt-30 color-black" :to="{ name: 'SendMoney', params: { type: 'N' } }">Send Money
+    </MainButton>
     <div class="mt-30 dashboard__row-upper">
       <div class="dashboard__container-top-content t-align-left color-black font-thin"> Last Transactions </div>
       <div class="dashboard__container-top-content content-align-right">
         <router-link class="color-blue font-thin" :to="{ name: 'Transactions' }"> View all</router-link>
       </div>
     </div>
-    <SingleContact v-if="orderdTransactions !== undefined" v-for="(contact, key) in orderdTransactions" :key="key"
-      :member="null" :phone="contact.phone ? contact.phone : contact.tel" :date="contact.createdAt" :type="contact.type"
-      :isTransaction="true" :money="contact.payment" :balance="contact.balance_after" />
-    <div v-else>
-      <NewContactIcon />
-      <h1 class="t-align-center  primary-font mt-30">Seems like you don't have any moviments in your account</h1>
+    <div class="space">
+      <SingleContact v-if="orderdTransactions.length > 0" v-for="(contact, key) in orderdTransactions" :key="key"
+        :member="null" :phone="contact.phone ? contact.phone : contact.tel" :date="contact.createdAt" :type="contact.type"
+        :isTransaction="true" :money="contact.payment" :balance="contact.balance_after" />
+      <div v-else>
+        <NewContactIcon />
+        <h1 class="t-align-center  primary-font mt-30">Seems like you don't have any moviments in your account</h1>
+      </div>
     </div>
   </div>
 </template>
