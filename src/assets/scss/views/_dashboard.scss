@@ -76,7 +76,7 @@
 .dashboard__row-bottom{
   display: grid;
   grid-template-columns: 2fr 2fr;
-  align-items: end;
+  align-items: flex-end;
 }
 .dashboard__user{
   color: #C4C4C4;

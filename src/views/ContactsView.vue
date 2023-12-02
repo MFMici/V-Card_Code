@@ -3,6 +3,7 @@ import ImportContactsIcon from '@/components/icons/ImportContactsIcon.vue'
 import { ref, watch } from 'vue'
 import MainTitle from "@/components/sections/MainTitle.vue"
 import SingleContact from "@/components/sections/SingleContact.vue"
+import NewContactIcon from "@/components/icons/NewContactIcon.vue";
 import User from '@/request/User.js'
 
 const searchTerm = ref('')
@@ -94,19 +95,25 @@ watch(searchTerm, (newValue, oldValue) => {
 </script>
 
 <template>
-        <div class="container__direction-column">
-            <div class="input__group-col">
-                <MainTitle title="Contacts" type="N" class="mt-50" />
-                <input type="text" name="searchTerm" placeholder="Type here ..." :required="required" v-model="searchTerm"
-                    class="input__field" />
-                <div class="single-contact__wrapper">
-                    <button class="single-contact__import-contacts" @click="importNewContacts">Import Contacts
-                        <ImportContactsIcon />
-                    </button>
-                    <SingleContact 
-                    v-for="(contact, key) in contacts" :key="key" :member="contact.member"
+    <div class="container__direction-column" v-if="allContacts.length > 0">
+        <div class="input__group-col">
+            <MainTitle title="Contacts" type="N" class="mt-50" />
+            <input type="text" name="searchTerm" placeholder="Type here ..." :required="required" v-model="searchTerm"
+                class="input__field" />
+            <div class="single-contact__wrapper">
+                <button class="single-contact__import-contacts" @click="importNewContacts">Import Contacts
+                    <ImportContactsIcon />
+                </button>
+                <div class="space">
+                    <SingleContact v-for="(contact, key) in contacts" :key="key" :member="contact.member"
                         :phone="contact.phone ? contact.phone : contact.tel" />
                 </div>
             </div>
         </div>
+    </div>
+    <div v-else>
+        <MainTitle title="Contacts" type="N" class="mt-50" />
+        <NewContactIcon />
+        <h1 class="t-align-center  primary-font mt-30">Seems like you don't have any contacts</h1>
+    </div>
 </template>

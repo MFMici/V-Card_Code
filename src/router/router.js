@@ -37,7 +37,7 @@ const routes = [
     },
   },
   {
-    path: '/send-money',
+    path: '/send-money/:type',
     name: 'SendMoney',
     component: () => import('@/views/SendMoneyView.vue'),
     meta: {
@@ -56,6 +56,14 @@ const routes = [
     path: '/settings',
     name: 'Settings',
     component: () => import('@/views/SettingsView.vue'),
+    meta: {
+      requiresAuth: true
+    },
+  },
+  {
+    path: '/piggy-bank',
+    name: 'PiggyBank',
+    component: () => import('@/views/PiggyBankView.vue'),
     meta: {
       requiresAuth: true
     },

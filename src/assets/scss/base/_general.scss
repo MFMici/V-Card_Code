@@ -81,5 +81,13 @@ line-height: normal
   margin-left: 10px;
 }
 .w-100{
-  width: 100%;
+  width: 100%!important;
+}
+
+.space:last-child{
+  padding-bottom: 70px;
+}
+
+.mb-70{
+  margin-bottom: 70px;
 }

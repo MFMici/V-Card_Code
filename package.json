@@ -14,11 +14,13 @@
   "dependencies": {
     "@vueform/multiselect": "^2.6.2",
     "axios": "^1.4.0",
+    "chart.js": "^3.9.1",
     "date-fns": "^2.30.0",
     "firebase-tools": "^12.7.0",
     "pinia": "^2.0.36",
     "sweetalert2": "^11.9.0",
     "vue": "^3.3.4",
+    "vue-chart-3": "^3.1.8",
     "vue-image-crop-upload": "^3.0.3",
     "vue-multiselect": "^3.0.0-beta.2",
     "vue-router": "4",
