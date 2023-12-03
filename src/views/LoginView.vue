@@ -1,15 +1,17 @@
 <script setup>
 import MainButton from '@/components/buttons/MainButton.vue';
 import BasicInput from '@/components/inputs/BasicInput.vue'
+import MainForm from '@/components/forms/MainForm.vue'
 import { ref, computed } from 'vue'
 import { useErrorStore } from '@/stores/ErrorStore'
-import { useAuthStore } from '@/stores/AuthStore'
-import CodeModal from '@/components/modals/CodeModal.vue';
+import User from "@/request/User.js";
+import { useRoute } from 'vue-router';
+import { showErrorAlert } from '@/components/alerts/sweetAlerts.js'
+
+const router = useRoute();
 
 const errorStore = useErrorStore()
-const authStore = useAuthStore()
 
-const openModal = ref(false);
 const isReady = ref(false);
 
 const form = ref({
@@ -25,44 +27,43 @@ const formatedPhoneNumber = computed(() => {
   const passwordWithoutSpaces = form.value.phone.replace(/\s/g, '');
   const phoneWithEmail = passwordWithoutSpaces + '@gmail.com';
   return {
-        passwordWithoutSpaces,
-        phoneWithEmail,
-    }
+    passwordWithoutSpaces,
+    phoneWithEmail,
+  }
 })
 
-const registerUser = async () => {
-   try {
-    await authStore.registerUser(formatedPhoneNumber.value.phoneWithEmail, form.value.password, formatedPhoneNumber.value.passwordWithoutSpaces);
-   }
-   catch(errorResponse) {
-     console.error(errorResponse);
-   }
+const loginUser = async () => {
+  try {
+    await User.login(formatedPhoneNumber.value.phoneWithEmail, form.value.password);
+    router.push({name: 'Dashboard'})
+  }
+  catch (err) {
+    showErrorAlert('Error', 'Invalid credentials')
+  }
 }
 
 </script>
 
 <template>
-  <CodeModal
-  v-if="openModal" v-model:ready="isReady" type="N" :handleLogic="registerUser" :to="{ name: 'Dashboard' }"
-    @update:ready="handleUpdateReady" />
+  <MainForm class="register__form-wrapper" :is-submit-disabled="isSubmitDisabled" :handle-logic="loginUser" :is-processing="isReady" >
     <div class="container__direction-column">
-      <h1 class="register__title mt-50">Register and start transferring</h1>
+      <h1 class="register__title mt-50">Login and start transferring</h1>
       <div class="register__form-wrapper">
         <div class="register__inputs-wrapper">
           <BasicInput
 v-model:value="form.phone" name="phone" label="Phone" type="text" placeholder="Enter your phone"
-            :required="true" :isNew="true" />
+            :required="true" />
           <BasicInput
 v-model:value="form.password" name="password" label="Password" type="password"
             placeholder="Enter your password" :required="true" />
         </div>
-
         <div class="register__buttons-wrapper">
-          <MainButton class="primary-button" :disabled="isSubmitDisabled" @click="openModal = true">Create V-Card
+          <MainButton class="primary-button" :disabled="isSubmitDisabled" :loading="isReady">Login
           </MainButton>
-          <MainButton :to="{ name: 'Login' }" class="sub-button">Already have an account?</MainButton>
+          <MainButton :to="{ name: 'Register' }" class="sub-button">Dont have an account?</MainButton>
         </div>
       </div>
     </div>
+  </MainForm>
 </template>
 

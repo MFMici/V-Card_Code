@@ -13,7 +13,7 @@ import MainButton from '@/components/buttons/MainButton.vue';
           Money</span> Safely</h1>
       <div class="home__container-buttons fade-in">
         <MainButton class="fade-in primary-button" :to="{ name: 'Register' }">Create new account</MainButton>
-        <MainButton class="fade-in sub-button" :to="{ name: 'Home' }">Already have an account?</MainButton>
+        <MainButton class="fade-in sub-button" :to="{ name: 'Login' }">Already have an account?</MainButton>
       </div>
     </div>
   </div>
