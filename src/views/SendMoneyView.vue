@@ -59,7 +59,7 @@ const sendPayment = async () => {
             await User.updateMy(userCollection)
             showSuccessAlert('', 'It was withdrawn ' + transferMoney + '€ from your deposit with success');
             openModal.value = false
-            router.push({ name: 'Dashboard' })
+            router.push({ name: 'PiggyBank' })
             return
         }
 
@@ -86,7 +86,7 @@ const sendPayment = async () => {
             await User.updateMy(userCollection)
             showSuccessAlert('', 'It was deposited ' + transferMoney + '€ in your deposit with success');
             openModal.value = false
-            router.push({ name: 'Dashboard' })
+            router.push({ name: 'PiggyBank' })
             return
         }
 
@@ -119,31 +119,33 @@ const sendPayment = async () => {
         let difference = 0
 
         if (getPiggyBankChecked && (transferMoney % 1 !== 0)) {
+            difference = Number((Math.ceil(transferMoney) - transferMoney).toFixed(2))
+            if (userCollection.spendable_balance - transferMoney - difference >= 0) {
 
-            const result = await Swal.fire({
-                title: 'Round Amount',
-                text: 'Do you want to round the amount?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#1A87DC',
-                cancelButtonColor: '#F83540',
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No',
-            })
+                const result = await Swal.fire({
+                    title: 'Round Amount',
+                    text: 'Do you want to round the amount?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#1A87DC',
+                    cancelButtonColor: '#F83540',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No',
+                })
 
-            if (result.isConfirmed) {
-                difference = Number((Math.ceil(transferMoney) - transferMoney).toFixed(2))
-                userCollection.deposit_balance += difference;
-                userCollection.piggy_transfers.push({
-                    phone: userCollection.phone,
-                    payment: difference,
-                    message: form.value.message,
-                    balance_after: userCollection.deposit_balance,
-                    createdAt: formattedDate,
-                    type: 'receive'
-                });
+                if (result.isConfirmed) {
+                    userCollection.deposit_balance += difference;
+                    userCollection.piggy_transfers.push({
+                        phone: userCollection.phone,
+                        payment: difference,
+                        message: form.value.message,
+                        balance_after: userCollection.deposit_balance,
+                        createdAt: formattedDate,
+                        type: 'receive'
+                    });
 
-                await User.updateMy(userCollection)
+                    await User.updateMy(userCollection)
+                }
             }
         }
 
@@ -225,7 +227,7 @@ const pageTitle = computed(() => {
 
                 <MainButton class="primary-button mb-70" :disabled="isSubmitDisabled" @click="openModal = true">Send Payment
                 </MainButton>
- 
+
             </div>
         </div>
     </div>
