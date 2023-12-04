@@ -5,10 +5,10 @@ import MainForm from '@/components/forms/MainForm.vue'
 import { ref, computed } from 'vue'
 import { useErrorStore } from '@/stores/ErrorStore'
 import User from "@/request/User.js";
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { showErrorAlert } from '@/components/alerts/sweetAlerts.js'
 
-const router = useRoute();
+const router = useRouter();
 
 const errorStore = useErrorStore()
 
