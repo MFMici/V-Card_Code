@@ -35,7 +35,9 @@ const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 
             <router-link :to="{ name: 'PiggyBank' }">
               <PiggyBankIcon />
             </router-link>
-            <BellIcon />
+            <router-link :to="{ name: 'Notifications' }">
+              <BellIcon />
+            </router-link>
           </div>
         </div>
       </div>
