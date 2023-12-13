@@ -119,19 +119,6 @@ const sendPayment = async () => {
         let difference = 0
 
         if (getPiggyBankChecked && (transferMoney % 1 !== 0)) {
-
-            const result = await Swal.fire({
-                title: 'Round Amount',
-                text: 'Do you want to round the amount?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#1A87DC',
-                cancelButtonColor: '#F83540',
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No',
-            })
-
-            if (result.isConfirmed) {
                 difference = Number((Math.ceil(transferMoney) - transferMoney).toFixed(2))
                 userCollection.deposit_balance += difference;
                 userCollection.piggy_transfers.push({
@@ -144,7 +131,6 @@ const sendPayment = async () => {
                 });
 
                 await User.updateMy(userCollection)
-            }
         }
 
         userCollection.spendable_balance = userCollection.spendable_balance - transferMoney - difference;
