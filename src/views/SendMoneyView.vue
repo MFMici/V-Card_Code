@@ -152,7 +152,8 @@ const sendPayment = async () => {
             message: form.value.message,
             balance_after: getReceiverDoc.spendable_balance + getReceiverDoc.deposit_balance,
             createdAt: formattedDate,
-            type: 'receive'
+            type: 'receive',
+            notification: getReceiverDoc.notificationChecked
         });
 
 

@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="single-contact__button">
-            <button class="cube-button" ><WhiteEyeIcon/></button>
+            <button class="cube-button"><WhiteEyeIcon/></button>
         </div>
     </div>
 </template>
@@ -20,6 +20,11 @@
 import WhiteEyeIcon from '@/components/icons/WhiteEyeIcon.vue'
 import { ref } from 'vue'
 
+const emits = defineEmits(['update:categoryChangeHandler']);
+
+const updateTransfer = () => {
+    emits('update:categoryChangeHandler', false);
+}
 
 
 const props = defineProps({

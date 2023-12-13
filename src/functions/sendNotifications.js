@@ -22,7 +22,6 @@ exports.sendNotificationOnTransferChange = functions.firestore
 
       try {
         await admin.messaging().sendToDevice(registrationTokens, payload);
-        console.log('Notification sent successfully');
       } catch (error) {
         console.error('Error sending notification:', error);
       }
