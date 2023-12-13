@@ -27,7 +27,7 @@ const orderdTransactions = limit(orderBy(userCollection.transfers, 'createdAt', 
         <div class="dashboard__container-top-content">
           <p class="t-align-left dashboard__user">Hi, {{ userCollection.phone }}</p>
           <p class="t-align-left dashboard__total-balance">Total Balance</p>
-          <h1 class="t-align-left dashboard__balance">{{ userCollection.deposit_balance + userCollection.spendable_balance
+          <h1 class="t-align-left dashboard__balance">{{ Number(userCollection.deposit_balance + userCollection.spendable_balance).toFixed(2)
           }} €</h1>
         </div>
         <div class="dashboard__container-top-content">

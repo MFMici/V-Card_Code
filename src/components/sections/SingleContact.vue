@@ -20,10 +20,10 @@
         </div>
         <div v-else class="single-contact__info">
             <div class="single-contact__phone">
-                <p class="t-align-right font-bold primary-font"><span v-if="type == 'send'"> -</span><span v-else> +</span>{{ money }}€</p>
+                <p class="t-align-right font-bold primary-font"><span v-if="type == 'send'"> -</span><span v-else> +</span>{{ Number(money).toFixed(2) }}€</p>
             </div>
             <div class="single-contact__phone">
-                <p class="t-align-right primary-font">{{ balance }}€</p>
+                <p class="t-align-right primary-font">{{ Number(balance).toFixed(2) }}€</p>
             </div>
         </div>
 
