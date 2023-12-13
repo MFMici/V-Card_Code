@@ -104,9 +104,11 @@ const filterByDateRange = () => {
             </div>
         </div>
         <div class="space">
-            <SingleContact v-if="userCollection.transfers.length > 0" v-for="(contact, key) in filteredCollection.transfers"
+            <SingleContact v-if="userCollection.transfers.length > 0 && filteredCollection.transfers.length > 0" v-for="(contact, key) in filteredCollection.transfers"
                 :key="key" :member="null" :phone="contact.phone ? contact.phone : contact.tel" :date="contact.createdAt"
                 :type="contact.type" :isTransaction="true" :money="contact.payment" :balance="contact.balance_after" />
+                <NewContactIcon v-else />
+
         </div>
     </div>
     <div v-else>
