@@ -94,6 +94,9 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && user == null) {
       next({name: 'Register'})
     }
+    if(!to.meta.requiresAuth && user != null){
+      next({name: 'Dashboard'})
+    }
     next()
   })
 })
