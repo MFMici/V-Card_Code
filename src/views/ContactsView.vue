@@ -113,6 +113,9 @@ watch(searchTerm, (newValue, oldValue) => {
     </div>
     <div v-else>
         <MainTitle title="Contacts" type="N" class="mt-50" />
+        <button class="single-contact__import-contacts" @click="importNewContacts">Import Contacts
+                    <ImportContactsIcon />
+                </button>
         <NewContactIcon />
         <h1 class="t-align-center  primary-font mt-30">Seems like you don't have any contacts</h1>
     </div>
