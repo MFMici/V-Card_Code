@@ -78,7 +78,7 @@ const routes = [
     name: 'Notifications',
     component: () => import('@/views/NotificationsView.vue'),
     meta: {
-      requiresAuth: false
+      requiresAuth: true
     },
   }
   
