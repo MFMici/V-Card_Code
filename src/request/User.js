@@ -1,5 +1,5 @@
-import { getAuth, createUserWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
-import { getFirestore, collection, doc, setDoc, updateDoc, getDocs, query, where, getDoc, } from 'firebase/firestore';
+import { getAuth, createUserWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider, signInWithEmailAndPassword  } from "firebase/auth";
+import { getFirestore, collection, doc, setDoc, updateDoc, getDocs, query, where, getDoc } from 'firebase/firestore';
 
 
 export default {
@@ -19,6 +19,9 @@ export default {
         catch (error) {
             console.error('Error registering user:', error.message);
         }
+    },
+    async login(email, password) {
+            return await signInWithEmailAndPassword(getAuth(), email, password);
     },
     updateMy(data) {
         const userDocRef = doc(collection(getFirestore(), 'users'), getAuth().currentUser.uid)

@@ -58,7 +58,7 @@ const sendPayment = async () => {
             await User.updateMy(userCollection)
             showSuccessAlert('', 'It was withdrawn ' + transferMoney + '€ from your deposit with success');
             openModal.value = false
-            router.push({ name: 'Dashboard' })
+            router.push({ name: 'PiggyBank' })
             return
         }
 
@@ -85,7 +85,7 @@ const sendPayment = async () => {
             await User.updateMy(userCollection)
             showSuccessAlert('', 'It was deposited ' + transferMoney + '€ in your deposit with success');
             openModal.value = false
-            router.push({ name: 'Dashboard' })
+            router.push({ name: 'PiggyBank' })
             return
         }
 
@@ -128,7 +128,6 @@ const sendPayment = async () => {
                     createdAt: formattedDate,
                     type: 'receive'
                 });
-
                 await User.updateMy(userCollection)
         }
 
@@ -215,7 +214,7 @@ const pageTitle = computed(() => {
 
                 <MainButton class="primary-button mb-70" :disabled="isSubmitDisabled" @click="openModal = true">Send Payment
                 </MainButton>
- 
+
             </div>
         </div>
     </div>
