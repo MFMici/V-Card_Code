@@ -24,7 +24,6 @@ const messaging = getMessaging(firebaseApp);
 
 Notification.requestPermission().then((permission) => {
   if (permission === 'granted') {
-    console.log('Notification permission granted.');
     getToken(messaging, { vapidKey: 'BOuzjAk4lBRA1YQyoYHp2njdUJsIiZxEp5y3Ym4XB5W5SsFj9tJxMR7gLBpltl_2MiMN8BoFNUar6zexESAvrVE' })
       .then((currentToken) => {
         if (currentToken) {

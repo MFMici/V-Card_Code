@@ -4,14 +4,19 @@ import HeartIcon from "@/components/icons/HeartIcon.vue";
 import MainTitle from "@/components/sections/MainTitle.vue";
 import DestroyModal from '@/components/modals/DestroyModal.vue';
 import { ref } from 'vue'
+import User from '@/request/User.js'
+
 const openModal = ref(false)
+const userCollection = await User.getMy()
 
 
 const handlePiggyBankChange = (event) => {
     localStorage.setItem('piggyBankChecked', event.target.checked)
 }
 
-const handleNotificationsChange = (event) => {
+const handleNotificationsChange = async (event) => {
+    userCollection.notificationChecked = event.target.checked
+    await User.updateMy(userCollection)
     localStorage.setItem('notificationsChecked', event.target.checked)
 }
 
