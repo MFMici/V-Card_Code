@@ -9,12 +9,12 @@ import User from '@/request/User.js'
 import { showErrorAlert, showSuccessAlert } from '@/components/alerts/sweetAlerts.js'
 import { removeSpaces } from '@/components/utils/hydration/dataFormater.js';
 import { useRouter } from 'vue-router'
-import Swal from 'sweetalert2';
 
 const router = useRouter()
 const errorStore = useErrorStore()
 const getPiggyBankChecked = localStorage.getItem('piggyBankChecked') === 'true';
 const isPiggyBankTransaction = router.currentRoute.value.params.type === 'W' || router.currentRoute.value.params.type === 'D';
+const userCollection = await User.getMy()
 
 const form = ref({
     phone: router.currentRoute.value.params.type.startsWith('9') ? router.currentRoute.value.params.type : '',
@@ -37,7 +37,6 @@ const sendPayment = async () => {
         const transferMoney = Number(form.value.payment)
 
         if (router.currentRoute.value.params.type === 'W') {
-            const userCollection = await User.getMy()
 
             if (transferMoney > userCollection.deposit_balance) {
                 openModal.value = false
@@ -119,34 +118,17 @@ const sendPayment = async () => {
         let difference = 0
 
         if (getPiggyBankChecked && (transferMoney % 1 !== 0)) {
-            difference = Number((Math.ceil(transferMoney) - transferMoney).toFixed(2))
-            if (userCollection.spendable_balance - transferMoney - difference >= 0) {
-
-                const result = await Swal.fire({
-                    title: 'Round Amount',
-                    text: 'Do you want to round the amount?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#1A87DC',
-                    cancelButtonColor: '#F83540',
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No',
-                })
-
-                if (result.isConfirmed) {
-                    userCollection.deposit_balance += difference;
-                    userCollection.piggy_transfers.push({
-                        phone: userCollection.phone,
-                        payment: difference,
-                        message: form.value.message,
-                        balance_after: userCollection.deposit_balance,
-                        createdAt: formattedDate,
-                        type: 'receive'
-                    });
-
-                    await User.updateMy(userCollection)
-                }
-            }
+                difference = Number((Math.ceil(transferMoney) - transferMoney).toFixed(2))
+                userCollection.deposit_balance += difference;
+                userCollection.piggy_transfers.push({
+                    phone: userCollection.phone,
+                    payment: difference,
+                    message: form.value.message,
+                    balance_after: userCollection.deposit_balance,
+                    createdAt: formattedDate,
+                    type: 'receive'
+                });
+                await User.updateMy(userCollection)
         }
 
         userCollection.spendable_balance = userCollection.spendable_balance - transferMoney - difference;
@@ -214,6 +196,11 @@ const pageTitle = computed(() => {
         @update:ready="handleUpdateReady" />
     <div class="container__direction-column">
         <MainTitle :title="pageTitle" class="mt-50" />
+        <div v-if="isPiggyBankTransaction">
+            <h2>Spendable Money: {{ userCollection.spendable_balance }}</h2>
+            <h2>Deposit Money: {{ userCollection.deposit_balance }}</h2>
+        </div>
+
         <div class="contact__form-wrapper">
             <div class="contact__inputs-wrapper">
                 <BasicInput v-if="!isPiggyBankTransaction" v-model:value="form.phone" name="phone" label="Phone" type="text"

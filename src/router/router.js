@@ -72,7 +72,16 @@ const routes = [
     meta: {
       requiresAuth: true
     },
+  },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component: () => import('@/views/NotificationsView.vue'),
+    meta: {
+      requiresAuth: false
+    },
   }
+  
 ]
 
 const router = createRouter({
