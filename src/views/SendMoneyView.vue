@@ -133,7 +133,7 @@ const sendPayment = async () => {
         }
 
         userCollection.spendable_balance = Number((userCollection.spendable_balance - transferMoney - difference).toFixed(2));
-
+        console.log(userCollection.spendable_balance)
         userCollection.transfers.push({
             phone: receivedPhone,
             payment: transferMoney,
@@ -199,8 +199,8 @@ const pageTitle = computed(() => {
     <div class="container__direction-column">
         <MainTitle :title="pageTitle" class="mt-50" />
         <div v-if="isPiggyBankTransaction">
-            <h2>Spendable Money: {{ userCollection.spendable_balance }}€</h2>
-            <h2>Deposit Money: {{ userCollection.deposit_balance }}€</h2>
+            <h2>Spendable Money: {{ Number(userCollection.spendable_balance).toFixed(2) }}€</h2>
+            <h2>Deposit Money: {{ Number(userCollection.deposit_balance).toFixed(2) }}€</h2>
         </div>
 
         <div class="contact__form-wrapper">
