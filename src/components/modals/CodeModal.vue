@@ -58,6 +58,7 @@ const codeConfirmation = async () => {
             concatenatedDigits.value.deposit_balance = 0
             concatenatedDigits.value.transfers = []
             concatenatedDigits.value.piggy_transfers = []
+            concatenatedDigits.value.notification = false
             await props.handleLogic();
             await User.updateMy(concatenatedDigits.value)
             localStorage.setItem('piggyBankChecked', 'false')

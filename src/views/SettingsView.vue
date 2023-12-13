@@ -26,13 +26,14 @@ const getPiggyBankChecked = localStorage.getItem('piggyBankChecked') === 'true';
 </script>
 
 <template>
-<DestroyModal v-if="openModal" v-model:ready="isReady" v-model:value="openModal"/>
+<DestroyModal v-if="openModal" v-model:ready="isReady" v-model:value="openModal" />
     <div class="container__direction-column-start">
         <MainTitle title="Settings" type="" class="mt-50" />
         <h1 class="settings__title">General</h1>
-        <MainButton class="settings-button mt-20" @click="openModal = true">
+        <MainButton class="settings-button mt-20" @click="openModal = true" :disabled="userCollection.spendable_balance > 0 || userCollection.deposit_balance > 0">
             <HeartIcon /> <span class="ml-10">Delete Account</span>
         </MainButton>
+        <span class="input__error-text" v-if="userCollection.spendable_balance > 0 || userCollection.deposit_balance > 0">You cant delete an account that still has balance</span>
         <h1 class="settings__title mt-50">Transactions</h1>
         <div class="settings__switcher">
             <div>

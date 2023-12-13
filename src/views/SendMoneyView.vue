@@ -37,6 +37,7 @@ const sendPayment = async () => {
         const transferMoney = Number(form.value.payment)
 
         if (router.currentRoute.value.params.type === 'W') {
+            const userCollection = await User.getMy()
 
             if (transferMoney > userCollection.deposit_balance) {
                 openModal.value = false
@@ -131,7 +132,7 @@ const sendPayment = async () => {
                 await User.updateMy(userCollection)
         }
 
-        userCollection.spendable_balance = userCollection.spendable_balance - transferMoney - difference;
+        userCollection.spendable_balance = Number((userCollection.spendable_balance - transferMoney - difference).toFixed(2));
 
         userCollection.transfers.push({
             phone: receivedPhone,
@@ -153,7 +154,7 @@ const sendPayment = async () => {
             balance_after: getReceiverDoc.spendable_balance + getReceiverDoc.deposit_balance,
             createdAt: formattedDate,
             type: 'receive',
-            notification: getReceiverDoc.notificationChecked
+            notification: getReceiverDoc.notificationChecked ? true : false
         });
 
 
@@ -198,8 +199,8 @@ const pageTitle = computed(() => {
     <div class="container__direction-column">
         <MainTitle :title="pageTitle" class="mt-50" />
         <div v-if="isPiggyBankTransaction">
-            <h2>Spendable Money: {{ userCollection.spendable_balance }}</h2>
-            <h2>Deposit Money: {{ userCollection.deposit_balance }}</h2>
+            <h2>Spendable Money: {{ userCollection.spendable_balance }}€</h2>
+            <h2>Deposit Money: {{ userCollection.deposit_balance }}€</h2>
         </div>
 
         <div class="contact__form-wrapper">
