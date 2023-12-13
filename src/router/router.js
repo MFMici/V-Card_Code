@@ -13,6 +13,11 @@ const routes = [
     component: () => import('@/views/RegisterView.vue'),
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/LoginView.vue'),
+  },
+  {
     path: '/contacts',
     name: 'Contacts',
     component: () => import('@/views/ContactsView.vue'),
