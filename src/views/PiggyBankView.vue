@@ -55,7 +55,8 @@ const viewLess = () => {
 <template>
     <div class="container__direction-column-start">
         <MainTitle title="Piggy Bank" class="mt-50" />
-        <PieChart v-bind="pieChartProps" />
+        <PieChart v-bind="pieChartProps" v-if="userCollection.spendable_balance > 0 || userCollection.deposit_balance > 0"/>
+        <h1 class="input__error-text" v-else> You dont have any balance right now</h1>
 
         <div class="piggy-bank__button-wrapper">
             <MainButton class="primary-button mt-30  piggy-bank__button" :to="{ name: 'SendMoney', params: { type: 'W' } }">
