@@ -1,0 +1,26 @@
+.eye-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 47px;
+}
+.circle{
+    cursor: pointer;
+    background-color: $primaryGrey;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+
+    &--active{
+        background: $primaryColor;
+    }
+}
+
+.add-icon__position{
+    margin-left: auto;
+    z-index: 3;
+}

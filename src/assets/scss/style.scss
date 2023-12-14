@@ -1,0 +1,49 @@
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global */
+@import "@/assets/scss/sass-utils/_variables.scss";
+@import "@/assets/scss/sass-utils/_mixins.scss";
+@import "@/assets/scss/sass-utils/_animations.scss";
+@import "@/assets/scss/base/_general.scss";
+
+/* Logo */
+@import "@/assets/scss/components/logo/_squared-logo.scss";
+
+/* Icons */
+@import "@/assets/scss/components/icons/_icons.scss";
+@import "@/assets/scss/components/icons/_backbutton-icon.scss";
+@import "@/assets/scss/components/icons/_hourglass-loader.scss";
+
+
+/* Modals */
+@import "@/assets/scss/components/modals/_main-modal.scss";
+@import "@/assets/scss/components/modals/_code-modal.scss";
+
+/* Inputs */
+@import "@/assets/scss/components/inputs/_basic-input.scss";
+@import "@/assets/scss/components/inputs/_squared-input.scss";
+
+/* Containers */
+@import "@/assets/scss/components/containers/_main-container.scss";
+@import "@/assets/scss/components/containers/_container-directions.scss";
+
+/* Buttons */
+@import "@/assets/scss/components/buttons/_main-button.scss";
+@import "@/assets/scss/components/buttons/_cube-button.scss";
+
+/* Contacts */
+@import "@/assets/scss/components/contacts/_single-contact.scss";
+
+/* Views */
+@import "@/assets/scss/views/_home.scss";
+@import "@/assets/scss/views/_register.scss";
+@import "@/assets/scss/views/_contacts.scss";
+@import "@/assets/scss/views/_dashboard.scss";
+@import "@/assets/scss/views/_transactions.scss";
+@import "@/assets/scss/views/_settings.scss";
+@import "@/assets/scss/views/_piggy-bank.scss";
+
+@import "@/assets/scss/views/_main-menu.scss";

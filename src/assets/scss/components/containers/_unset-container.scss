@@ -1,0 +1,15 @@
+.unset-container__container {
+  background: white;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  @include container;
+}
+
+.unset-container__container-inner {
+  height: inherit;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
